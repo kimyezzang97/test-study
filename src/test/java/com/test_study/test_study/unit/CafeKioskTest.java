@@ -2,6 +2,7 @@ package com.test_study.test_study.unit;
 
 import com.test_study.test_study.unit.beverage.Americano;
 import com.test_study.test_study.unit.beverage.Latte;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -43,6 +44,7 @@ class CafeKioskTest {
     }
 
     @Test
+    @DisplayName("영업 시작 시간 이전에는 주문을 생성할 수 없다.")
     void addZeroBeverages(){ // 예외 케이스
         CafeKiosk cafeKiosk = new CafeKiosk();
         Americano americano = new Americano();
@@ -101,6 +103,12 @@ class CafeKioskTest {
         assertThatThrownBy(() -> cafeKiosk.createOrder(LocalDateTime.of(2023, 1, 17, 9, 59)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("주문 시간이 아닙니다. 관리자에게 문의하세요.");
+
+    }
+
+    @Test
+    @DisplayName("주문 목록에 담긴 상품들의 총 금액을 계산할 수 있다.")
+    void calculateTotalPrice(){
 
     }
 }
